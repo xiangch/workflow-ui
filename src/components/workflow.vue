@@ -30,8 +30,8 @@
 				});
 				Graph.registerNode("queryNode", {
 					inherit: "vue-shape",
-					width: 150,
-					height: 100,
+					width: 200,
+					height: 106,
 					component: {
 						template: `<QueryNode />`,
 						components: {
@@ -44,7 +44,6 @@
 				this.nodes.forEach(node => {
 					graph.addNode(node)
 				})
-
 			},
 			setTitle: function(title) {
 				const nodes = graph.getNodes();

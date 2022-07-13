@@ -2,6 +2,7 @@ import {
 	Graph
 
 } from '@antv/x6'
+import WorkflowGraph from './WorkflowGraph.js'
 
 //自定义边
 Graph.registerEdge(
@@ -52,7 +53,9 @@ Graph.registerEdgeTool('add-button', {
 		view
 	}) {
 		const edge = view.cell
-		console.log(edge.source.cell)
+		const sourceId = edge.source.cell
+		const targetId = edge.target.cell
+		console.log(WorkflowGraph.self)
 	}
 })
 

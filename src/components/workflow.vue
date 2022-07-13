@@ -17,26 +17,23 @@
 	import './AddEdge.js'
 	import './NodeTool.js'
 
+	import WorkflowGraph from './WorkflowGraph.js'
+
 	let graph = null;
 	// 布局方向
 	const dir = 'TB' // LR RL TB BT
 	export default {
 		name: "WorkFlow",
-		mixins: [data,tools,layout],
+		mixins: [data, tools, layout],
 		data() {
 			return {
-				title: "test",
+				title: '节点名称'
 			}
 		},
 		methods: {
 			initGraph: function() {
-				graph = new Graph({
-					container: document.getElementById('container'),
-					width: 800,
-					height: 598,
-					grid: true,
-				});
-				
+				graph = WorkflowGraph.init("container");
+
 			},
 			createNodes: function() {
 				//this.nodes来源于WorkflowData.vue
@@ -75,5 +72,5 @@
 </script>
 
 <style>
-	
+
 </style>

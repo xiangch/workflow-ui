@@ -6,7 +6,7 @@ import QueryNode from "./QueryNode.vue"
 Graph.registerNode("query-node", {
 	inherit: "vue-shape",
 	width: 200,
-	height: 105,
+	height: 128,
 	component: {
 		template: `<QueryNode />`,
 		components: {

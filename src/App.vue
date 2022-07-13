@@ -3,7 +3,7 @@
 </template>
 
 <script>
-	import workflow from './components/workflow.vue'
+	import workflow from './components/Workflow.vue'
 
 
 	export default {

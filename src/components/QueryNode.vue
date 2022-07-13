@@ -35,7 +35,7 @@
 			const node = this.getNode();
 			const {
 				title
-			} = node.getData();
+			} = node.getData();			
 			if (title) {
 				self.title = title
 			}
@@ -173,7 +173,7 @@
 		padding: 4px 8px;
 		margin-top: 6px;
 	}
-
+	
 	.flow-node .flow-node-text {
 		display: -webkit-box;
 		overflow: hidden;

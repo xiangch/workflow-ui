@@ -1,5 +1,5 @@
 {
-  "name": "test-vue",
+  "name": "workflow-ui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "@antv/x6": "^1.32.8",
     "@antv/x6-vue-shape": "^1.4.0",
     "core-js": "^3.8.3",
+    "dagre": "^0.8.5",
     "vue": "^3.2.13"
   },
   "devDependencies": {

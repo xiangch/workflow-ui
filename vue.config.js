@@ -1,8 +1,8 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+  
   transpileDependencies: true,
-  runtimeCompiler: true  // 运行时编译
+  runtimeCompiler: true,  // 运行时编译
+  lintOnSave: true
 })
-module.exports = { 
-  runtimeCompiler: true  // 运行时编译
-} 
+

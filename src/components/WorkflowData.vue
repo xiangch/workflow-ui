@@ -15,7 +15,7 @@
 					{
 						id: 'node2', // String，节点的唯一标识
 						x: 160, // Number，必选，节点位置的 x 值
-						y: 220, // Number，必选，节点位置的 y 值							
+						y: 250, // Number，必选，节点位置的 y 值							
 						shape: 'query-node',
 						data: {
 							title: "查询单条数据",

@@ -46,7 +46,7 @@ Graph.registerEdgeTool('add-button', {
 	],
 	distance: '50%',
 	offset: {
-		x: 10,
+		x: 5,
 		y: 0
 	},
 	onClick({
@@ -55,9 +55,29 @@ Graph.registerEdgeTool('add-button', {
 		const edge = view.cell
 		const sourceId = edge.source.cell
 		const targetId = edge.target.cell
-		console.log(WorkflowGraph.self)
+		const graph = WorkflowGraph.self
+		const newNodeId = "node"+Math.random()
+		const node = graph.addNode({
+			id: newNodeId, // String，可选，节点的唯一标识						
+			x: 460*Math.random(), // Number，必选，节点位置的 x 值
+			y: 50*Math.random(), // Number，必选，节点位置的 y 值						
+			shape: 'query-node',
+			data: {
+				title: "查询多条数据"+Math.random(),
+			}
+		});
+		
+		graph.removeEdge(edge);
+		graph.addEdge({
+			shape: 'add-edge',
+			source: sourceId,
+			target: node.id,
+		});
+		graph.addEdge({
+			shape: 'add-edge',
+			source: node.id,
+			target: targetId,
+		});
+
 	}
 })
-
-
-

@@ -1,7 +1,9 @@
 <script>
+	import WorkflowGraph from './WorkflowGraph.js'
 	export default {
 		methods:{
-			toolsEvent: function (graph){
+			registerToolsEvent: function (){
+				const graph = WorkflowGraph.self;
 				graph.on('edge:mouseenter', ({
 					cell
 				}) => {
@@ -21,7 +23,8 @@
 				graph.on('node:mouseenter', ({
 					cell
 				}) => {
-					if (!cell.hasTool('add-button')) {
+						
+					if (!cell.hasTool('add-button') && cell.id!='start'  && cell.id!='end') {
 						cell.addTools('add-button')
 					}
 				})
@@ -37,7 +40,7 @@
 				graph.on('node:mouseenter', ({
 					cell
 				}) => {
-					if (!cell.hasTool('del-button')) {
+					if (!cell.hasTool('del-button') && cell.id!='start'  && cell.id!='end') {
 						cell.addTools('del-button')
 					}
 				})

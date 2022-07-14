@@ -32,7 +32,6 @@
 		methods: {
 			initGraph: function() {
 				graph = WorkflowGraph.init("container");
-
 			},
 			createNodes: function() {
 				//this.nodes来源于WorkflowData.vue
@@ -59,9 +58,7 @@
 		},
 		mounted: function() {
 			this.initGraph()
-			this.toolsEvent(graph)
-			this.createNodes()
-			this.createEdges()
+			this.registerToolsEvent()
 			this.$watch('title', function(newVal, oldVal) {
 				console.log(newVal, oldVal);
 				this.setTitle(newVal);

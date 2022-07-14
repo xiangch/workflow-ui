@@ -18,7 +18,7 @@ Graph.registerEdge(
 	},
 	true,
 )
-let nodeId=2;
+let nodeId = 2;
 Graph.registerEdgeTool('add-button', {
 	inherit: 'button',
 	markup: [{
@@ -58,17 +58,15 @@ Graph.registerEdgeTool('add-button', {
 		const targetId = edge.target.cell
 		const graph = WorkflowGraph.self
 		nodeId++
-		const newNodeId = "node"+nodeId
+		const newNodeId = "node" + nodeId
 		const node = graph.addNode({
-			id: newNodeId, 				
-			x: 1, 
-			y: 1, 				
+			id: newNodeId,
 			shape: 'query-node',
 			data: {
-				title: "查询多条数据"+nodeId,
+				title: "查询多条数据" + nodeId,
 			}
 		});
-		
+
 		graph.removeEdge(edge);
 		graph.addEdge({
 			shape: 'add-edge',

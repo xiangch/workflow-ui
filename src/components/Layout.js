@@ -35,7 +35,14 @@ function layout(graph) {
 		const node = graph.getCell(id)
 		if (node) {
 			const pos = g.node(id)
-			node.position(pos.x, pos.y)
+			var offsetX = 0
+			var offsetY = 0
+			if(node.id=='start' || node.id=='end'){
+				offsetX = 40
+				offsetY = 34
+			}
+			node.position(pos.x+offsetX, pos.y+offsetY)
+			
 		}
 	})
 
@@ -44,8 +51,6 @@ function layout(graph) {
 		const target = edge.getTargetNode()
 		const sourceBBox = source.getBBox()
 		const targetBBox = target.getBBox()
-
-		console.log(sourceBBox, targetBBox)
 
 		if ((dir === 'LR' || dir === 'RL') && sourceBBox.y !== targetBBox.y) {
 			const gap =

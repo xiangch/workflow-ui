@@ -3,7 +3,7 @@ import {
 
 } from '@antv/x6'
 import WorkflowGraph from './WorkflowGraph.js'
-
+import layout from './Layout.js'
 //自定义边
 Graph.registerEdge(
 	'add-edge', {
@@ -18,6 +18,7 @@ Graph.registerEdge(
 	},
 	true,
 )
+let nodeId=2;
 Graph.registerEdgeTool('add-button', {
 	inherit: 'button',
 	markup: [{
@@ -56,14 +57,15 @@ Graph.registerEdgeTool('add-button', {
 		const sourceId = edge.source.cell
 		const targetId = edge.target.cell
 		const graph = WorkflowGraph.self
-		const newNodeId = "node"+Math.random()
+		nodeId++
+		const newNodeId = "node"+nodeId
 		const node = graph.addNode({
-			id: newNodeId, // String，可选，节点的唯一标识						
-			x: 460*Math.random(), // Number，必选，节点位置的 x 值
-			y: 50*Math.random(), // Number，必选，节点位置的 y 值						
+			id: newNodeId, 				
+			x: 1, 
+			y: 1, 				
 			shape: 'query-node',
 			data: {
-				title: "查询多条数据"+Math.random(),
+				title: "查询多条数据"+nodeId,
 			}
 		});
 		
@@ -78,6 +80,6 @@ Graph.registerEdgeTool('add-button', {
 			source: node.id,
 			target: targetId,
 		});
-
+		layout(graph)
 	}
 })

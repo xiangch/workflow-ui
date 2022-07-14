@@ -12,7 +12,7 @@
 	import "@antv/x6-vue-shape"
 	import data from './WorkflowData.vue'
 	import tools from './ToolsEvent.vue'
-	import layout from './Layout.vue'
+	
 	import './QueryNode.js'
 	import './AddEdge.js'
 	import './NodeTool.js'
@@ -20,11 +20,10 @@
 	import WorkflowGraph from './WorkflowGraph.js'
 
 	let graph = null;
-	// 布局方向
-	const dir = 'TB' // LR RL TB BT
+	
 	export default {
 		name: "WorkFlow",
-		mixins: [data, tools, layout],
+		mixins: [data, tools],
 		data() {
 			return {
 				title: '节点名称'

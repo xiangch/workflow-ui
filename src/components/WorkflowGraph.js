@@ -23,11 +23,12 @@ let workflowGraph = {
 				visible: true,
 				type: 'mesh', // 'dot' | 'fixedDot' | 'mesh'
 				args: {
-			  color: '#D8D8D8', // 网格线/点颜色
+					color: '#D8D8D8', // 网格线/点颜色
 					thickness: 0.5 // 网格线宽度/网格点大小
 				}
 			},
 			grid: true,
+			scroller: true,			
 		});
 		return workflowGraph.self;
 	},

@@ -69,6 +69,7 @@ Graph.registerNode('switch-start-node', {
 			stroke: '#A2B1C3',
 			rx: 15,
 			ry: 15,
+			event: 'case:add',
 		},
 		label: {
 			'font-size': 12,
@@ -86,7 +87,7 @@ Graph.registerNode('switch-end-node', {
 	inherit: 'circle',
 	width: 10,
 	height: 10,
-	label: '',
+	label: '',	
 	attrs: {
 		body: {
 			fill: '#A2B1C3',

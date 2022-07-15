@@ -10,8 +10,7 @@
 	} from '@antv/x6'
 	import dagre from 'dagre'
 	import "@antv/x6-vue-shape"
-	import data from './WorkflowData.vue'
-	import tools from './ToolsEvent.vue'
+	import data from './WorkflowData.vue'	
 	
 	import './RegistryNodes.js'
 	import './RegistryEdges.js'
@@ -24,7 +23,7 @@
 	
 	export default {
 		name: "WorkFlow",
-		mixins: [data, tools],
+		mixins: [data],
 		data() {
 			return {
 				title: '节点名称'
@@ -59,7 +58,6 @@
 		},
 		mounted: function() {
 			this.initGraph()
-			this.registerToolsEvent()
 			this.$watch('title', function(newVal, oldVal) {
 				console.log(newVal, oldVal);
 				this.setTitle(newVal);

@@ -2,7 +2,10 @@ import {
 	Graph
 } from "@antv/x6";
 import layout from "./Layout.js";
+import registryToolsEvent from "./RegistryToolsEvent.js";
+import SwitchNode from "./SwitchNode.js";
 import "./RegistryNodes.js";
+import "./RegistryEdges.js";
 
 let workflowGraph = {
 	self: {},
@@ -31,7 +34,12 @@ let workflowGraph = {
 			},
 			grid: true,
 			scroller: true,
-		});
+		})
+		//监听鼠标移上去工具类出现
+		registryToolsEvent(graph)
+		//监听增加分支条件事件
+		SwitchNode.registryEvent(graph)
+
 		workflowGraph.self = graph;
 		graph.freeze()
 		graph.addNode({
@@ -50,6 +58,6 @@ let workflowGraph = {
 		layout(graph)
 		return workflowGraph.self;
 	},
-};
+}
 
 export default workflowGraph;

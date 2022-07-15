@@ -1,9 +1,8 @@
 import {
 	Graph
 } from '@antv/x6'
-import WorkflowGraph from './WorkflowGraph.js'
 import layout from './Layout.js'
-import addSwitchNode from './SwitchNode.js'
+import SwitchNode from './SwitchNode.js'
 let nodeId = 0;
 Graph.registerEdgeTool('add-button', {
 	inherit: 'button',
@@ -30,27 +29,27 @@ Graph.registerEdgeTool('add-button', {
 				y: '0.3em',
 			},
 		},
-	],
-	distance: '50%',
+	],	
 	offset: {
-		x: 5,
+		x: 20,
 		y: 0
 	},
 	onClick({
 		view
 	}) {
+
 		const edge = view.cell
 		const sourceId = edge.source.cell
 		const targetId = edge.target.cell
-		const graph = WorkflowGraph.self
+		const graph = edge.model.graph
 		nodeId++
 		const newNodeId = "node_" + nodeId
 		var newTarget = null
 		var newSource = null
 		if (nodeId == 2) {
-			const nodes = addSwitchNode()
-			newTarget =  nodes[0].id
-			newSource =  nodes[1].id
+			const nodes = SwitchNode.createSwitchNodes(graph)
+			newTarget = nodes[0].id
+			newSource = nodes[1].id
 		} else {
 			const node = graph.addNode({
 				id: newNodeId,
@@ -59,12 +58,12 @@ Graph.registerEdgeTool('add-button', {
 					title: "查询多条数据" + nodeId,
 				}
 			});
-			newTarget =  node.id
-			newSource =  node.id
+			newTarget = node.id
+			newSource = node.id
 		}
 
 		graph.removeEdge(edge);
-		
+
 		graph.addEdge({
 			shape: 'add-edge',
 			source: sourceId,

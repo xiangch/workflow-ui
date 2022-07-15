@@ -34,15 +34,21 @@ function layout(graph) {
 	g.nodes().forEach((id) => {
 		const node = graph.getCell(id)
 		if (node) {
+			//console.log(node.shape)
 			const pos = g.node(id)
 			var offsetX = 0
 			var offsetY = 0
-			if(node.id=='start' || node.id=='end'){
+			if (node.shape == 'start-node' || node.shape == 'end-node') {
 				offsetX = 40
 				offsetY = 34
+			} else if (node.shape == 'switch-start-node') {
+				offsetX = 64
+				offsetY = 46
+			} else if (node.shape == 'switch-end-node') {
+				offsetX = 95
+				offsetY = 59
 			}
-			node.position(pos.x+offsetX, pos.y+offsetY)
-			
+			node.position(pos.x + offsetX, pos.y + offsetY)
 		}
 	})
 

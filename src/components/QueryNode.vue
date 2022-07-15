@@ -32,7 +32,7 @@
 		},
 		mounted() {
 			const self = this;
-			const node = this.getNode();
+			const node = this.getNode();			
 			const {
 				title
 			} = node.getData();			

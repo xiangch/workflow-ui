@@ -13,8 +13,9 @@
 	import data from './WorkflowData.vue'
 	import tools from './ToolsEvent.vue'
 	
-	import './QueryNode.js'
-	import './AddEdge.js'
+	import './RegistryNodes.js'
+	import './RegistryEdges.js'
+	import './EdgeTool.js'
 	import './NodeTool.js'
 
 	import WorkflowGraph from './WorkflowGraph.js'

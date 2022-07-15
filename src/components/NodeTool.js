@@ -1,7 +1,9 @@
 import {
 	Graph
 } from '@antv/x6'
-
+/**
+ * 工具类-节点上的增加按钮
+ */
 Graph.registerNodeTool('add-button', {
 	inherit: 'button',
 	markup: [{
@@ -41,7 +43,9 @@ Graph.registerNodeTool('add-button', {
 		console.log(node)
 	}
 })
-
+/**
+ * 工具类-节点上的删除按钮
+ */
 Graph.registerNodeTool('del-button', {
 	inherit: 'button',
 	markup: [{

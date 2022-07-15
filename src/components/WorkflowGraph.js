@@ -2,6 +2,7 @@ import {
 	Graph
 } from "@antv/x6";
 import layout from "./Layout.js";
+import "./RegistryNodes.js";
 
 let workflowGraph = {
 	self: {},
@@ -35,44 +36,11 @@ let workflowGraph = {
 		graph.freeze()
 		graph.addNode({
 			id: 'start',
-			width: 120,
-			height: 60,
-			label: '流程发起',
-			attrs: {
-				body: {
-					fill: '#55aa7f',
-					stroke: '#55aa7f',
-					rx: 15,
-					ry: 15,
-				},
-				label: {
-					fill: 'white',
-					'font-size': 16,
-					'text-anchor': 'middle',
-					'pointer-events': 'none',
-				}
-			}
-
+			shape: 'start-node'
 		})
 		graph.addNode({
 			id: 'end',
-			width: 120,
-			height: 60,
-			label: '流程结束',
-			attrs: {
-				body: {
-					fill: '#6E6E6E',
-					stroke: '#6E6E6E',
-					rx: 15,
-					ry: 15,
-				},
-				label: {
-					fill: 'white',
-					'font-size': 16,
-					'text-anchor': 'middle',
-					'pointer-events': 'none',
-				}
-			}
+			shape: 'end-node'
 		})
 		graph.addEdge({
 			shape: 'add-edge',

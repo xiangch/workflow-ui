@@ -9,11 +9,13 @@
 		Graph,
 	} from '@antv/x6'
 	import WorkflowGraph from './WorkflowGraph.js'
+	import data from './WorkflowData.vue'
 
 	let graph = null;
-	
+
 	export default {
-		name: "WorkFlow",	
+		name: "WorkFlow",
+		mixins: [data],
 		data() {
 			return {
 				title: '节点名称'
@@ -23,7 +25,7 @@
 			initGraph: function() {
 				graph = WorkflowGraph.init("container");
 				WorkflowGraph.fromJSON(this.tasks)
-			},			
+			},
 			setTitle: function(title) {
 				const nodes = graph.getNodes();
 				if (nodes.length) {

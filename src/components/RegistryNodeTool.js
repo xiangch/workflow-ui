@@ -4,7 +4,7 @@ import {
 /**
  * 工具类-节点上的增加按钮
  */
-Graph.registerNodeTool('add-button', {
+Graph.registerNodeTool('node-add-button', {
 	inherit: 'button',
 	markup: [{
 			tagName: 'circle',
@@ -46,7 +46,7 @@ Graph.registerNodeTool('add-button', {
 /**
  * 工具类-节点上的删除按钮
  */
-Graph.registerNodeTool('del-button', {
+Graph.registerNodeTool('node-del-button', {
 	inherit: 'button',
 	markup: [{
 			tagName: 'circle',

@@ -4,9 +4,11 @@ import {
 import "./RegistryNodes.js";
 import "./RegistryEdges.js";
 import "./RegistryNodeTool.js";
+import "./RegistryEdgeTool.js";
 import layout from "./Layout.js";
 import registryToolsEvent from "./RegistryToolsEvent.js";
 import SwitchNode from "./SwitchNode.js";
+import addNode from "./NodeUtil.js";
 
 
 let workflowGraph = {
@@ -60,8 +62,19 @@ let workflowGraph = {
 		layout(graph)
 		return workflowGraph.self;
 	},
-	fromJSON(data){
-		
+	fromJSON(tasks) {
+		const graph = this.self;
+		const edges = graph.getEdges()
+		var edge = edges[0]
+		tasks.forEach(
+			task => {
+				edge = addNode(edge, {
+					id: task.name,
+					title: task.title,
+					type:task.type
+				});
+			}
+		)
 	}
 }
 

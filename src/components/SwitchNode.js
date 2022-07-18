@@ -6,48 +6,55 @@ import {
 import './RegistryNodes.js'
 import './RegistryEdges.js'
 import layout from './Layout.js'
-let caseId = 0
-let switchId = 0
+
 
 let SwitchNode = {
-	addCase(graph,switchId,caseId){
+
+	addCase(graph, switchNode, caseId) {
+		var caseIndex = switchNode.getData().caseIndex;
+		const switchId = switchNode.id
 		const caseNode = graph.addNode({
-			id: 'switch_' + switchId + '_case_' + caseId,
+			id: caseId,
 			shape: 'query-node',
 			data: {
-				title: '条件' + caseId
+				title: '条件' + caseIndex
 			}
 		})
 		graph.addEdge({
 			shape: 'switch-start-edge',
-			source: 'switch_start_'+switchId,
+			source: switchId,
 			target: caseNode.id,
 		})
 		graph.addEdge({
 			shape: 'switch-end-edge',
 			source: caseNode.id,
-			target: 'switch_end_'+switchId,
+			target: 'switch_end_' + switchId,
 		});
+		caseIndex++
+		switchNode.updateData({
+			"caseIndex": caseIndex
+		})
 		return caseNode;
 	},
-	createSwitchNodes(graph) {
-
-		switchId++
-		const caseId = 1;
-
+	createSwitchNodes(graph, switchId, caseNodes) {
+		var caseIndex = 1;
 		const switchStartNode = graph.addNode({
-			id: 'switch_start_' + switchId,
+			id: switchId,
 			shape: 'switch-start-node',
 			data: {
-				switchId: switchId,
-				caseId: caseId
+				caseIndex: caseIndex
 			}
 		})
 		const switchEndNode = graph.addNode({
 			id: 'switch_end_' + switchId,
 			shape: 'switch-end-node'
 		})
-		const case1Node = this.addCase(graph,switchId,caseId)
+		caseNodes.forEach(
+			node => {
+				this.addCase(graph, switchStartNode, node.id)
+			});
+
+
 		const defaultNode = graph.addNode({
 			id: 'switch_' + switchId + '_case_default',
 			shape: 'query-node',
@@ -55,13 +62,13 @@ let SwitchNode = {
 				title: '其它情况'
 			}
 		})
-		
+
 		graph.addEdge({
 			shape: 'switch-start-edge',
 			source: switchStartNode.id,
 			target: defaultNode.id,
 		});
-		
+
 		graph.addEdge({
 			shape: 'switch-end-edge',
 			source: defaultNode.id,
@@ -76,13 +83,8 @@ let SwitchNode = {
 			node
 		}) => {
 			e.stopPropagation()
-			const data = node.getData()
-			var caseId = data.caseId
-			const switchId = data.switchId
-			console.log("switchId:" + switchId + " caseId:" + caseId)
-			caseId++
-			this.addCase(graph,switchId,caseId)
-			node.updateData({"caseId":caseId})
+			//TODO: caseId 要保证唯一
+			this.addCase(graph, node, "caseId_" + Math.random())
 			layout(graph)
 		})
 	}

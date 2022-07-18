@@ -4,6 +4,8 @@ import {
 import layout from './Layout.js'
 import SwitchNode from './SwitchNode.js'
 let nodeId = 0;
+let switchId = 0;
+let caseId = 0;
 Graph.registerEdgeTool('add-button', {
 	inherit: 'button',
 	markup: [{
@@ -29,7 +31,7 @@ Graph.registerEdgeTool('add-button', {
 				y: '0.3em',
 			},
 		},
-	],	
+	],
 	offset: {
 		x: 20,
 		y: 0
@@ -47,7 +49,11 @@ Graph.registerEdgeTool('add-button', {
 		var newTarget = null
 		var newSource = null
 		if (nodeId == 2) {
-			const nodes = SwitchNode.createSwitchNodes(graph)
+			caseId++
+			switchId++
+			const nodes = SwitchNode.createSwitchNodes(graph, 'switch_' + switchId, [{
+				id: "case_"+caseId
+			}])
 			newTarget = nodes[0].id
 			newSource = nodes[1].id
 		} else {

@@ -1,6 +1,7 @@
 import {
 	Graph
 } from '@antv/x6'
+import "@antv/x6-vue-shape"
 import QueryNode from "./QueryNode.vue"
 //流程开始节点
 Graph.registerNode("start-node", {

@@ -1,11 +1,13 @@
 import {
 	Graph
 } from "@antv/x6";
+import "./RegistryNodes.js";
+import "./RegistryEdges.js";
+import "./RegistryNodeTool.js";
 import layout from "./Layout.js";
 import registryToolsEvent from "./RegistryToolsEvent.js";
 import SwitchNode from "./SwitchNode.js";
-import "./RegistryNodes.js";
-import "./RegistryEdges.js";
+
 
 let workflowGraph = {
 	self: {},
@@ -58,6 +60,9 @@ let workflowGraph = {
 		layout(graph)
 		return workflowGraph.self;
 	},
+	fromJSON(data){
+		
+	}
 }
 
 export default workflowGraph;

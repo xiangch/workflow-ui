@@ -8,22 +8,12 @@
 	import {
 		Graph,
 	} from '@antv/x6'
-	import dagre from 'dagre'
-	import "@antv/x6-vue-shape"
-	import data from './WorkflowData.vue'	
-	
-	import './RegistryNodes.js'
-	import './RegistryEdges.js'
-	import './EdgeTool.js'
-	import './NodeTool.js'
-
 	import WorkflowGraph from './WorkflowGraph.js'
 
 	let graph = null;
 	
 	export default {
-		name: "WorkFlow",
-		mixins: [data],
+		name: "WorkFlow",	
 		data() {
 			return {
 				title: '节点名称'
@@ -32,19 +22,8 @@
 		methods: {
 			initGraph: function() {
 				graph = WorkflowGraph.init("container");
-			},
-			createNodes: function() {
-				//this.nodes来源于WorkflowData.vue
-				this.nodes.forEach(node => {
-					graph.addNode(node)
-				})
-			},
-			createEdges: function() {
-				//this.edges来源于WorkflowData.vue
-				this.edges.forEach(edge => {
-					graph.addEdge(edge)
-				})
-			},
+				WorkflowGraph.fromJSON(this.tasks)
+			},			
 			setTitle: function(title) {
 				const nodes = graph.getNodes();
 				if (nodes.length) {

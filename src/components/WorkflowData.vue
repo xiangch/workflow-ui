@@ -16,7 +16,12 @@
 						"decisionCases": {
 							"条件1": [],
 							"条件2": [],
-						}
+						},
+						"defaultCase": [],
+					},
+					{
+						"name": "task_3",
+						"title": "任务3"
 					},
 				]
 			}

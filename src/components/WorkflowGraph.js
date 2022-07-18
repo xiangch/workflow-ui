@@ -9,6 +9,9 @@ import layout from "./Layout.js";
 import registryToolsEvent from "./RegistryToolsEvent.js";
 import SwitchNode from "./SwitchNode.js";
 import addNode from "./NodeUtil.js";
+import {
+	v4 as uuidv4
+} from 'uuid';
 
 
 let workflowGraph = {
@@ -68,10 +71,20 @@ let workflowGraph = {
 		var edge = edges[0]
 		tasks.forEach(
 			task => {
+				var cases = [];
+				if (task.type == 'switch') {
+					Object.keys(task.decisionCases).forEach(key => {
+						cases.push({
+							id: 'case_' + uuidv4(),
+							title: key
+						})
+					})
+				}
 				edge = addNode(edge, {
 					id: task.name,
 					title: task.title,
-					type:task.type
+					type: task.type,
+					cases: cases,
 				});
 			}
 		)

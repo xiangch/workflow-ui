@@ -6,18 +6,20 @@ import {
 import './RegistryNodes.js'
 import './RegistryEdges.js'
 import layout from './Layout.js'
+import { v4 as uuidv4 } from 'uuid';
 
 
 let SwitchNode = {
 
-	addCase(graph, switchNode, caseId) {
-		var caseIndex = switchNode.getData().caseIndex;
+	addCase(graph, switchNode, caseNodeData) {
 		const switchId = switchNode.id
+		const caseId = caseNodeData.id
+		const caseTitle = caseNodeData.title;
 		const caseNode = graph.addNode({
 			id: caseId,
 			shape: 'query-node',
 			data: {
-				title: '条件' + caseIndex
+				title: caseTitle
 			}
 		})
 		graph.addEdge({
@@ -30,10 +32,7 @@ let SwitchNode = {
 			source: caseNode.id,
 			target: 'switch_end_' + switchId,
 		});
-		caseIndex++
-		switchNode.updateData({
-			"caseIndex": caseIndex
-		})
+
 		return caseNode;
 	},
 	createSwitchNodes(graph, switchId, caseNodes) {
@@ -51,7 +50,7 @@ let SwitchNode = {
 		})
 		caseNodes.forEach(
 			node => {
-				this.addCase(graph, switchStartNode, node.id)
+				this.addCase(graph, switchStartNode, node)
 			});
 
 
@@ -83,8 +82,18 @@ let SwitchNode = {
 			node
 		}) => {
 			e.stopPropagation()
-			//TODO: caseId 要保证唯一
-			this.addCase(graph, node, "caseId_" + Math.random())
+			var caseIndex = node.getData().caseIndex
+			console.log("caseId_" + uuidv4())
+			const caseNode = {
+				id: "caseId_" + uuidv4(),
+				title: '条件' + caseIndex
+			}
+
+			this.addCase(graph, node, caseNode)
+
+			node.updateData({
+				"caseIndex": caseIndex
+			})
 			layout(graph)
 		})
 	}

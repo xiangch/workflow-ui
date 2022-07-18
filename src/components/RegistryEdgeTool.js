@@ -50,7 +50,8 @@ Graph.registerEdgeTool('edge-add-button', {
 		if (nodeId == 2) {
 			newNode.type = 'switch'
 			newNode.cases = [{
-				id: 'caseId_1'
+				id: 'caseId_0',
+				title:'条件0'
 			}]
 		}
 		addNode(edge, newNode)

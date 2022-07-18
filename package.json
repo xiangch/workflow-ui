@@ -12,6 +12,7 @@
     "@antv/x6-vue-shape": "^1.4.0",
     "core-js": "^3.8.3",
     "dagre": "^0.8.5",
+    "uuid": "^8.3.2",
     "vue": "^3.2.13"
   },
   "devDependencies": {

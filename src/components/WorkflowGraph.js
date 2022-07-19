@@ -71,20 +71,18 @@ let workflowGraph = {
 		var edge = edges[0]
 		tasks.forEach(
 			task => {
-				var cases = [];
+				var defaultCase = [];
+				var decisionCases = {};
 				if (task.type == 'switch') {
-					Object.keys(task.decisionCases).forEach(key => {
-						cases.push({
-							id: 'case_' + uuidv4(),
-							title: key
-						})
-					})
+					decisionCases = task.decisionCases
+					defaultCase = task.defaultCase
 				}
 				edge = addNode(edge, {
-					id: task.name,
+					id: task.taskReferenceName,
 					title: task.title,
 					type: task.type,
-					cases: cases,
+					decisionCases: decisionCases,
+					defaultCase: defaultCase,
 				});
 			}
 		)

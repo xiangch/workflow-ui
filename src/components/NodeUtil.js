@@ -4,17 +4,17 @@ import {
 import layout from './Layout.js'
 import SwitchNode from './SwitchNode.js'
 
-function addNode(edge,nodeData) {
+function addNode(edge, nodeData) {
 	const sourceId = edge.source.cell
 	const targetId = edge.target.cell
 	const graph = edge.model.graph
-	
+
 	const newNodeId = nodeData.id
 	const newNodeTitle = nodeData.title
 	var newTarget = null
 	var newSource = null
-	if (nodeData.type == 'switch') {		
-		const nodes = SwitchNode.createSwitchNodes(graph, nodeData.id, nodeData.cases)
+	if (nodeData.type == 'switch') {
+		const nodes = SwitchNode.createSwitchNodes(graph, nodeData.id, nodeData.decisionCases, nodeData.defaultCase)
 		newTarget = nodes[0].id
 		newSource = nodes[1].id
 	} else {

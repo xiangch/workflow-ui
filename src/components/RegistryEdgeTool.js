@@ -44,15 +44,13 @@ Graph.registerEdgeTool('edge-add-button', {
 			id: 'node_' + nodeId,
 			type: 'simple',
 			title: '查询多条数据' + nodeId,
-			cases: []
+			decisionCases: {},
+			defaultCase:[]
 		};
 		//假设第二个节点是分支（用于演示）
 		if (nodeId == 2) {
 			newNode.type = 'switch'
-			newNode.cases = [{
-				id: 'caseId_0',
-				title:'条件0'
-			}]
+			newNode.decisionCases = {"条件0":[]}
 		}
 		addNode(edge, newNode)
 	}

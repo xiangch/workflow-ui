@@ -6,15 +6,17 @@ import {
 import './RegistryNodes.js'
 import './RegistryEdges.js'
 import layout from './Layout.js'
-import { v4 as uuidv4 } from 'uuid';
+import addNode from "./NodeUtil.js";
+import {
+	v4 as uuidv4
+} from 'uuid';
 
 
 let SwitchNode = {
 
-	addCase(graph, switchNode, caseNodeData) {
-		const switchId = switchNode.id
-		const caseId = caseNodeData.id
-		const caseTitle = caseNodeData.title;
+	addCase(graph, switchId, caseTitle, childNodes) {
+		const caseId = 'case_' + switchId + '_' + uuidv4();
+
 		const caseNode = graph.addNode({
 			id: caseId,
 			shape: 'query-node',
@@ -27,15 +29,34 @@ let SwitchNode = {
 			source: switchId,
 			target: caseNode.id,
 		})
-		graph.addEdge({
+		const lastEdge = graph.addEdge({
 			shape: 'switch-end-edge',
 			source: caseNode.id,
-			target: 'switch_end_' + switchId,
-		});
+			target: switchId + '_end',
+		})
 
-		return caseNode;
+		if (childNodes) {
+			var defaultCase = [];
+			var decisionCases = {};
+			var edge = lastEdge
+			childNodes.forEach(task => {
+				if (task.type == 'switch') {
+					decisionCases = task.decisionCases
+					defaultCase = task.defaultCase
+				}
+				edge = addNode(edge, {
+					id: task.taskReferenceName,
+					title: task.title,
+					type: task.type,
+					decisionCases: decisionCases,
+					defaultCase: defaultCase,
+				})
+			})
+
+		}
+		return caseNode
 	},
-	createSwitchNodes(graph, switchId, caseNodes) {
+	createSwitchNodes(graph, switchId, decisionCases, defaultCase) {
 		var caseIndex = 1;
 		const switchStartNode = graph.addNode({
 			id: switchId,
@@ -45,12 +66,12 @@ let SwitchNode = {
 			}
 		})
 		const switchEndNode = graph.addNode({
-			id: 'switch_end_' + switchId,
+			id: switchId + '_end',
 			shape: 'switch-end-node'
 		})
-		caseNodes.forEach(
-			node => {
-				this.addCase(graph, switchStartNode, node)
+		Object.keys(decisionCases).forEach(
+			key => {
+				this.addCase(graph, switchId, key, decisionCases[key])
 			});
 
 
